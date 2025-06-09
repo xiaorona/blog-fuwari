@@ -66,8 +66,8 @@ export const profileConfig: ProfileConfig = {
 		},
 		{
 			name: "Email",
-			icon: "fa6-brands:envelope",
-			url: "mailto:oyama@aliyun.com",
+			icon: "fa6-brands:steam",
+			url: "mailto:sugarmoe@outlook.com",
 		},
 		{
 			name: "GitHub",
