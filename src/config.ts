@@ -65,11 +65,6 @@ export const profileConfig: ProfileConfig = {
 			url: "https://x.com/xiaoplana",
 		},
 		{
-			name: "Email",
-			icon: "fa6-brands:steam",
-			url: "mailto:sugarmoe@outlook.com",
-		},
-		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
 			url: "https://github.com/xiaorona",
