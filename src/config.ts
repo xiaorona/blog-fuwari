@@ -18,7 +18,7 @@ export const siteConfig: SiteConfig = {
 	banner: {
 		enable: true,
 		src: "assets/images/demo-banner.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
+		position: "top", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
 			enable: true, // Display the credit text of the banner image
 			text: "ARONA,by 咔咔", // Credit text to be displayed
@@ -65,9 +65,9 @@ export const profileConfig: ProfileConfig = {
 			url: "https://x.com/xiaoplana",
 		},
 		{
-			name: "Steam",
-			icon: "fa6-brands:steam",
-			url: "https://store.steampowered.com",
+			name: "Email",
+			icon: "fa6-brands:envelope",
+			url: "mailto:oyama@aliyun.com",
 		},
 		{
 			name: "GitHub",
