@@ -1,10 +1,3 @@
----
-# src/pages/friendlink.md
-layout: ../../layouts/MainGridLayout.astro
-title: 友情链接
-description: 我的博客友链列表
----
-
 ## 友链
 
 | 头像 | 网站 | 描述 |
