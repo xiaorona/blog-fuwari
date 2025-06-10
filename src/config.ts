@@ -44,6 +44,12 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		LinkPreset.About,
+		LinkPreset.Friendlink,
+		{
+                name: "GitHub",
+                url: "https://github.com/saicaca/fuwari",
+                external: true,
+                },
 	       ],
 };
 
