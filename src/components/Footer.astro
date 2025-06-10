@@ -11,8 +11,11 @@ const currentYear = new Date().getFullYear();
 <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">
     <div class="transition text-50 text-sm text-center">
         &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name}.<br> All Rights Reserved. <br>
+        <a href="https://icp.gov.moe/?keyword=20252255" target="_blank">萌ICP备20252255号</a><br>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://www.cloudflare.com/" rel="noopener" target="_blank">Cloudflare</a>
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('rss.xml')}>RSS</a> /
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('sitemap-index.xml')}>Sitemap</a><br>
-        <a href="https://icp.gov.moe/?keyword=20252255" target="_blank">萌ICP备20252255号</a>
     </div>
 </div>
