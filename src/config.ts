@@ -45,8 +45,8 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		{
-			name: "Start",
-			url: "https://star.sylu.net/", // Internal links should not include the base path, as it is automatically added
+			name: "",
+			url: "", // Internal links should not include the base path, as it is automatically added
 			external: false, // Show an external link icon and will open in a new tab
 		},
 	],
