@@ -77,7 +77,7 @@ style: |
   <!-- 友链卡片1 -->
   <div class="friend-card">
     <div class="friend-avatar-container">
-      <img class="friend-avatar" src="https://astro.build/favicon.svg" alt="Astro">
+      <img class="friend-avatar" src="https://pic.qqans.com/up/2020-12/16070652272345929.jpg" alt="Astro">
     </div>
     <h3 class="friend-name">Astro</h3>
     <p class="friend-desc">现代静态站点生成器</p>
@@ -89,7 +89,7 @@ style: |
   <!-- 友链卡片2 -->
   <div class="friend-card">
     <div class="friend-avatar-container">
-      <img class="friend-avatar" src="https://github.githubassets.com/favicons/favicon.png" alt="Fuwari">
+      <img class="friend-avatar" src="https://pic.qqans.com/up/2020-12/16070652276806379.jpg" alt="Fuwari">
     </div>
     <h3 class="friend-name">Fuwari</h3>
     <p class="friend-desc">轻量级Astro主题</p>
