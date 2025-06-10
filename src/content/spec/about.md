@@ -7,19 +7,19 @@ style: |
   .friend-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
   }
   .friend-table tr {
     border-bottom: 1px solid var(--border-color);
   }
   .friend-table td {
-    padding: 1rem;
+    padding: 0.75rem 1rem; /* 减少上下padding */
     vertical-align: middle;
-    height: 72px; /* 固定行高确保垂直居中 */
+    height: 60px; /* 降低行高 */
   }
   .friend-avatar {
-    width: 48px;
-    height: 48px;
+    width: 40px; /* 缩小头像尺寸 */
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
@@ -29,10 +29,13 @@ style: |
     font-weight: 500;
     color: var(--link-color);
     text-decoration: none;
+    font-size: 0.95rem; /* 微调字号 */
   }
   .friend-desc {
     color: var(--text-secondary);
-    line-height: 1.5;
+    line-height: 1.4; /* 紧凑行高 */
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
   }
 ---
 
@@ -40,21 +43,21 @@ style: |
 
 <table class="friend-table">
   <tr>
-    <td style="width: 80px; text-align: center;">
-      <img class="friend-avatar" src="https://astro.build/favicon.svg" alt="Astro" width="48" height="48">
+    <td style="width: 70px; text-align: center;">
+      <img class="friend-avatar" src="https://astro.build/favicon.svg" alt="Astro">
     </td>
     <td>
       <a class="friend-link" href="https://astro.build" target="_blank" rel="noopener">Astro 官方</a>
-      <p class="friend-desc">现代静态站点生成器，适合内容驱动型网站开发</p>
+      <p class="friend-desc">现代静态站点生成器</p>
     </td>
   </tr>
   <tr>
-    <td style="width: 80px; text-align: center;">
-      <img class="friend-avatar" src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" width="48" height="48">
+    <td style="width: 70px; text-align: center;">
+      <img class="friend-avatar" src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub">
     </td>
     <td>
       <a class="friend-link" href="https://github.com/saicaca/fuwari" target="_blank" rel="noopener">Fuwari主题</a>
-      <p class="friend-desc">轻量级Astro博客主题，简洁高效的设计风格</p>
+      <p class="friend-desc">轻量级Astro博客主题</p>
     </td>
   </tr>
 </table>
