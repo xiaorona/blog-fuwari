@@ -1,2 +1,2 @@
 # 关于
-[邮件:sugarmoe@outlook.com](mailto:sugarmoe@outlook.com)
+[联系邮件:sugarmoe@outlook.com](mailto:sugarmoe@outlook.com)
