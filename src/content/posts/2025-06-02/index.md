@@ -1,10 +1,10 @@
 ---
-title: Simple Guides for Fuwari
-published: 2024-04-01
-description: "How to use this blog template."
+title: ZoneABC免费二级域名申请
+published: 2025-06-02
+description: "白嫖免费的二级域名"
 image: ""
-tags: ["Fuwari", "Blogging", "Customization"]
-category: Guides
+tags: ["二级域名"]
+category: 白嫖
 draft: false
 ---
 
