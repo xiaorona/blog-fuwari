@@ -1,14 +1,3 @@
----
-# Frontmatter 配置
-layout: ../../layouts/Layout.astro  # 指定使用的布局文件
-title: 友情链接
-description: 这是我的友情链接页面，欢迎互换友链！
----
-
-# 友情链接
-
-以下是和我互换友链的伙伴们：
-
 ## 友链列表
 
 <!-- 使用 Astro 组件语法嵌入友链数据 -->
