@@ -46,8 +46,8 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		LinkPreset.Friendlink,
 		{
-                name: "GitHub",
-                url: "https://github.com/saicaca/fuwari",
+                name: "Start",
+                url: "https://star.sylu.net/",
                 external: true,
                 },
 	       ],
