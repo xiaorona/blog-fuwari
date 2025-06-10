@@ -15,11 +15,11 @@ style: |
   .friend-table td {
     padding: 0.75rem 1rem; /* 减少上下padding */
     vertical-align: middle;
-    height: 60px; /* 降低行高 */
+    height: 30px; /* 降低行高 */
   }
   .friend-avatar {
-    width: 40px; /* 缩小头像尺寸 */
-    height: 40px;
+    width: 30px; /* 缩小头像尺寸 */
+    height: 30px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
