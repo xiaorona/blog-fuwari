@@ -1,2 +1,3 @@
 ## 关于
-联系邮件:[ekoneko@126.com](mailto:ekoneko@126.com)
+联系我:[ekoneko@126.com](mailto:ekoneko@126.com)
+[telegram](https://t.me/Xiaorona)
