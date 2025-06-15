@@ -45,9 +45,9 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		{
-                name: "Start",
-                url: "https://star.sylu.net/",
-                external: true,
+                name: "友链",
+                url: "./friend-link.html",
+                external: false,
                 },
 	       ],
 };
