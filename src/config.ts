@@ -47,7 +47,7 @@ export const navBarConfig: NavBarConfig = {
 		{
                 name: "友链",
                 url: "https://blog.sugar.moe/friend-link.html",
-                external: false,
+                external: true,
                 },
 	       ],
 };
