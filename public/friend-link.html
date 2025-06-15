@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: "LXGW WenKai Screen", sans-serif;
             color: #333;
@@ -22,14 +22,14 @@
             background-size: cover;
             padding: 20px;
         }
-        
+
         .container {
             width: 100%;
             max-width: 700px;
             margin-top: 15vh;
             margin-bottom: 5vh;
         }
-        
+
         h1 {
             text-align: center;
             margin: 0 auto 30px;
@@ -38,14 +38,14 @@
             font-weight: 600;
             text-shadow: 0 1px 2px rgba(255,255,255,0.5);
         }
-        
+
         .links-container {
             display: grid;
             grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
-        
+
         .friend-link {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
@@ -62,13 +62,13 @@
             width: 100%;
             height: 120px;
         }
-        
+
         .friend-link:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0,0,0,0.15);
             background: rgba(255, 255, 255, 0.85);
         }
-        
+
         .avatar {
             width: 80px;
             height: 80px;
@@ -78,7 +78,7 @@
             border: 3px solid rgba(255,255,255,0.5);
             flex-shrink: 0;
         }
-        
+
         .info {
             flex: 1;
             min-width: 0;
@@ -86,7 +86,7 @@
             flex-direction: column;
             justify-content: center;
         }
-        
+
         .name {
             font-size: 1.1rem;
             font-weight: 600;
@@ -96,7 +96,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
+
         .desc {
             color: #6c757d;
             font-size: 0.85rem;
@@ -107,7 +107,7 @@
             overflow: hidden;
             line-height: 1.4;
         }
-        
+
         .button-group {
             display: flex;
             flex-direction: column;
@@ -117,7 +117,7 @@
             position: relative;
             width: 100%;
         }
-        
+
         .btn {
             display: inline-flex;
             justify-content: center;
@@ -141,7 +141,7 @@
             height: 40px;
             box-sizing: border-box;
         }
-        
+
         .btn:hover {
             background: rgba(255, 255, 255, 0.8);
             transform: translateY(-3px);
@@ -224,18 +224,18 @@
             font-size: 0.9rem;
             padding: 0;
         }
-        
+
         .copy-btn:hover {
             color: #2c3e50;
         }
-        
+
         .info-row {
             display: flex;
             align-items: center;
             margin-bottom: 5px;
             cursor: pointer;
         }
-        
+
         .info-row:last-child {
             margin-bottom: 0;
         }
@@ -270,28 +270,28 @@
         .toast.show {
             opacity: 1;
         }
-        
+
         @media (min-width: 768px) {
             .links-container {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
-        
+
         @media (max-width: 600px) {
             .container {
                 max-width: 90%;
                 margin-top: 10vh;
             }
-            
+
             h1 {
                 font-size: 1.7rem;
             }
-            
+
             .friend-link {
                 height: 110px;
                 padding: 12px;
             }
-            
+
             .avatar {
                 width: 70px;
                 height: 70px;
@@ -314,25 +314,25 @@
 <body>
     <div class="container">
         <h1>🥰友情链接🔗</h1>
-        
+
         <div class="links-container">
-            <a href="http://www.example.com" class="friend-link">
-                <img src="http://www.example.com/example.jpg" alt="友链1" class="avatar">
+            <a href="https://ikamusume7.org" class="friend-link">
+                <img src="https://ikamusume7.org/avatar.webp" alt="友链1" class="avatar">
                 <div class="info">
-                    <div class="name">友链1</div>
-                    <div class="desc">example1</div>
+                    <div class="name">伊卡的记事本</div>
+                    <div class="desc">又菜又爱学</div>
                 </div>
             </a>
-            
-            <a href="http://www.example.com" class="friend-link">
-                <img src="http://www.example.com/example.jpg" alt="友链2" class="avatar">
+
+            <a href="https://blog.imsugar.cn/" class="friend-link">
+                <img src="https://imgs.imsugar.cn/blog/20230801154617.jpg" alt="友链2" class="avatar">
                 <div class="info">
-                    <div class="name">友链2</div>
-                    <div class="desc">example2</div>
+                    <div class="name">Sugarの小博客</div>
+                    <div class="desc">陌上花开，可缓缓归矣</div>
                 </div>
             </a>
         </div>
-        
+
         <div class="button-group">
             <div id="emailMenu" class="email-menu">
                 <div class="email-item" data-copy="ekoneko@126.com">
@@ -348,7 +348,7 @@
                         <button class="copy-btn"><i class="fas fa-clone"></i></button>
                     </div>
                     <div class="info-row" data-copy="https://blog.sugar.moe/avatar.webp">
-                        <div class="content">网站头像：https://blog.sugar.moe/avatar.webp</div>
+                        <div class="content">网站头像：https://blog.sugar.moe/images/avatar.webp</div>
                         <button class="copy-btn"><i class="fas fa-clone"></i></button>
                     </div>
                     <div class="info-row" data-copy="https://blog.sugar.moe">
@@ -393,7 +393,7 @@
             const row = e.currentTarget;
             const text = row.getAttribute('data-copy') || 
                         row.closest('[data-copy]')?.getAttribute('data-copy');
-            
+
             if (text) {
                 copyToClipboard(text);
                 showToast();
