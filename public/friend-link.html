@@ -9,11 +9,16 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html, body {
+            height: 100%;
+            touch-action: manipulation;
+        }
+
         body {
             font-family: "LXGW WenKai Screen", sans-serif;
             color: #333;
             line-height: 1.6;
-            min-height: 100vh;
+            min-height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -21,6 +26,7 @@
             background: url('https://api.boxmoe.com/random.php') no-repeat center center fixed;
             background-size: cover;
             padding: 20px;
+            position: relative; /* 添加相对定位 */
         }
 
         .container {
@@ -28,6 +34,7 @@
             max-width: 700px;
             margin-top: 15vh;
             margin-bottom: 5vh;
+            position: relative; /* 确保容器有定位上下文 */
         }
 
         h1 {
@@ -116,6 +123,7 @@
             margin-top: 30px;
             position: relative;
             width: 100%;
+            z-index: 20; /* 提高按钮组的层级 */
         }
 
         .btn {
@@ -140,6 +148,7 @@
             font-family: "LXGW WenKai Screen", sans-serif;
             height: 40px;
             box-sizing: border-box;
+            position: relative; /* 确保按钮有定位上下文 */
         }
 
         .btn:hover {
@@ -160,23 +169,30 @@
             padding: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             width: 500px;
-            display: none;
+            /* 初始状态设置为透明且不可见 */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(10px);
             flex-direction: column;
             gap: 10px;
-            z-index: 10;
+            z-index: 30;
             margin-bottom: 10px;
             font-family: "LXGW WenKai Screen", sans-serif;
+            /* 添加过渡效果 */
+            transition: all 0.3s ease;
         }
 
         .email-menu.show {
-            display: flex;
-            animation: fadeIn 0.3s ease;
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateX(-50%) translateY(10px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+
 
         .email-item {
             display: flex;
@@ -374,51 +390,65 @@
         const toast = document.getElementById('toast');
         let isMenuVisible = false;
 
-        toggleBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleEmailMenu();
-        });
-
-        document.addEventListener('click', function() {
-            if (isMenuVisible) {
-                toggleEmailMenu();
-            }
-        });
-
-        emailMenu.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-
-        function handleCopyClick(e) {
-            const row = e.currentTarget;
-            const text = row.getAttribute('data-copy') || 
-                        row.closest('[data-copy]')?.getAttribute('data-copy');
-
-            if (text) {
-                copyToClipboard(text);
-                showToast();
-            }
-        }
-
-        document.querySelectorAll('.email-item, .info-row').forEach(item => {
-            item.addEventListener('click', handleCopyClick);
-        });
-
-        document.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                const text = btn.closest('[data-copy]')?.getAttribute('data-copy');
-                if (text) {
-                    copyToClipboard(text);
-                    showToast();
+                toggleEmailMenu();
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!emailMenu.contains(e.target) && e.target !== toggleBtn && isMenuVisible) {
+                    toggleEmailMenu();
+                }
+            });
+
+            emailMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                if (e.target.classList.contains('copy-btn') || e.target.closest('.copy-btn')) {
+                    const btn = e.target.classList.contains('copy-btn') ? e.target : e.target.closest('.copy-btn');
+                    const text = btn.closest('[data-copy]')?.getAttribute('data-copy');
+                    if (text) {
+                        copyToClipboard(text);
+                        showToast();
+                    }
+                    return;
+                }
+                
+                const copyElement = e.target.closest('[data-copy]');
+                if (copyElement) {
+                    const text = copyElement.getAttribute('data-copy');
+                    if (text) {
+                        copyToClipboard(text);
+                        showToast();
+                    }
                 }
             });
         });
 
         function toggleEmailMenu() {
             isMenuVisible = !isMenuVisible;
-            emailMenu.classList.toggle('show', isMenuVisible);
-            toggleBtn.textContent = isMenuVisible ? '收起菜单' : '添加友链';
+            
+            // 使用will-change优化动画性能
+            emailMenu.style.willChange = 'opacity, transform';
+            
+            if (isMenuVisible) {
+                // 显示菜单
+                emailMenu.style.display = 'flex';
+                // 强制重排确保动画能正确执行
+                void emailMenu.offsetHeight;
+                emailMenu.classList.add('show');
+            } else {
+                // 隐藏菜单
+                emailMenu.classList.remove('show');
+                // 动画结束后重置状态
+                setTimeout(() => {
+                    emailMenu.style.display = 'none';
+                    emailMenu.style.willChange = 'auto';
+                }, 300); // 与CSS过渡时间匹配
+            }
+            
+            toggleBtn.textContent = isMenuVisible ? '窝喜欢泥🥰' : '添加友链';
         }
 
         function copyToClipboard(text) {
