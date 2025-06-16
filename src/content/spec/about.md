@@ -1,7 +1,28 @@
-## 关于
+---
+# src/pages/about.md
+layout: "@layouts/MainLayout.astro"
+title: "关于"
+avatar: "https://blog.sugar.moe/images/avatar.webp"
+---
 
-本站使用的主题[Fuwari](https://github.com/saicaca/fuwari)，使用Google Chrome浏览器浏览本站页面可能无法显示主题色，推荐使用Microsoft Edge或其他浏览器尝试，评论系统后续会添加。
+![我的头像]({frontmatter.avatar} "头像"){class="w-24 h-24 rounded-full mx-auto"}
 
-联系我:<br>
+你好！我是 **你的名字**，一名开发者/设计师/写作者。
+
+- 🔭 正在开发 [项目名称](https://example.com)
+- 🌱 最近在学习 **Astro** 和 **Rust**
+- ✍️ 业余写博客分享技术心得
+- 📫 联系：
 [Email](mailto:ekoneko@126.com)<br>
 [Telegram](https://t.me/Xiaorona)
+[GitHub](https://github.com/yourname) [Twitter](https://twitter.com/yourname)
+
+## 技能栈
+
+`JavaScript` `React` `Node.js` `UI设计`
+
+## 时间线
+
+- **2023** - 开始写技术博客
+- **2021** - 毕业于XX大学
+- **2019** - 第一份开发工作
