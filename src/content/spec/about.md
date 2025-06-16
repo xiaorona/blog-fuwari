@@ -2,7 +2,7 @@
 # src/pages/about.md
 layout: "@layouts/MainLayout.astro"
 title: "关于"
-avatar: "/images/avatar.webp"
+avatar: "/images/demo-avatar.png"
 ---
 
 ![我的头像]({frontmatter.avatar} "头像"){class="w-24 h-24 rounded-full mx-auto"}
