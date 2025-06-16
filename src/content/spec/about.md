@@ -2,7 +2,7 @@
 # src/pages/about.md
 layout: "@layouts/MainLayout.astro"
 title: "关于"
-avatar: "https://blog.sugar.moe/images/avatar.webp"
+avatar: "/images/avatar.webp"
 ---
 
 ![我的头像]({frontmatter.avatar} "头像"){class="w-24 h-24 rounded-full mx-auto"}
