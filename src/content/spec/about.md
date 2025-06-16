@@ -1,9 +1,3 @@
----
-# src/pages/about.md
-layout: "@layouts/MainLayout.astro"
-title: "关于"
----
-
 你好！我是 **你的名字**，一名开发者/设计师/写作者。
 
 - 🔭 正在开发 [项目名称](https://example.com)
