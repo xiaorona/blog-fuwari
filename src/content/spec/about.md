@@ -2,10 +2,7 @@
 # src/pages/about.md
 layout: "@layouts/MainLayout.astro"
 title: "关于"
-avatar: "/images/demo-avatar.png"
 ---
-
-![我的头像]({frontmatter.avatar} "头像"){class="w-24 h-24 rounded-full mx-auto"}
 
 你好！我是 **你的名字**，一名开发者/设计师/写作者。
 
