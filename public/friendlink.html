@@ -84,6 +84,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            overflow: hidden;
         }
         .name {
             font-size: 1.1rem;
@@ -93,6 +94,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            max-width: 100%;
         }
         .desc {
             color: #6c757d;
@@ -103,6 +105,8 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             line-height: 1.4;
+            word-break: break-word;
+            max-width: 100%;
         }
         .button-group {
             display: flex;
@@ -279,7 +283,7 @@
             }
             .friend-link {
                 height: 110px;
-                padding: 12px;
+                padding: 15px;
             }
             .avatar {
                 width: 70px;
@@ -304,7 +308,7 @@
         <div class="links-container" id="linksContainer">
             <div class="loading">加载友链中...</div>
         </div>
-        
+
         <div class="button-group">
             <a href="/index.html" class="btn">返回主站</a>
             <button id="toggleEmail" class="btn">添加友链</button>
@@ -340,13 +344,13 @@
             </div>
         </div>
     </div>
-    
+
     <div class="footer">
         <a href="https://rpic.origz.com/api.php?category=pixiv" target="_blank" style="text-decoration: none; color: #000;">背景图:源初云API</a>
     </div>
-    
+
     <div id="toast" class="toast">已复制到剪贴板</div>
-    
+
     <script>
         const TRUSTED_DOMAINS = [
             'ikamusume7.org',
@@ -359,15 +363,15 @@
             try {
                 const response = await fetch('friendlinks.json');
                 if (!response.ok) throw new Error('网络响应不正常');
-                
+
                 const links = await response.json();
                 const container = document.getElementById('linksContainer');
-                
+
                 if (links.length === 0) {
                     container.innerHTML = '<p class="loading">暂无友链</p>';
                     return;
                 }
-                
+
                 container.innerHTML = '';
                 links.forEach(link => {
                     const linkEl = document.createElement('a');
@@ -379,12 +383,12 @@
                             <div class="desc">${link.desc}</div>
                         </div>
                     `;
-                    
+
                     linkEl.addEventListener('click', (e) => {
                         e.preventDefault();
                         handleSafeRedirect(link.url, e);
                     });
-                    
+
                     container.appendChild(linkEl);
                 });
             } catch (error) {
@@ -404,12 +408,12 @@
                 const isTrusted = TRUSTED_DOMAINS.some(d => 
                     domain === d || domain.endsWith(`.${d}`)
                 );
-                
+
                 const a = document.createElement('a');
                 a.href = url;
                 a.rel = 'noopener noreferrer';
                 a.target = '_blank';
-                
+
                 if (!isTrusted) {
                     console.warn('跳转未经验证域名:', domain);
                     event.currentTarget.classList.add('loading');
