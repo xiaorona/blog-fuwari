@@ -26,7 +26,7 @@ import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-cop
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://blog.sugar.moe/",
+	site: "https://fuwari.vercel.app/",
 	base: "/",
 	trailingSlash: "always",
 	integrations: [
@@ -40,7 +40,7 @@ export default defineConfig({
 			// when the Tailwind class `transition-all` is used
 			containers: ["main", "#toc"],
 			smoothScrolling: true,
-			cache: false,
+			cache: true,
 			preload: true,
 			accessibility: true,
 			updateHead: true,
