@@ -46,7 +46,7 @@ export const navBarConfig: NavBarConfig = {
                 LinkPreset.About,
                 {
                 name: "友链",
-                url: "https//blog.sugar.moe/friendlink",
+                url: "/friendlink",
                 external: true,
                 },
                 {
