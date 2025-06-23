@@ -29,6 +29,9 @@
             margin-top: 15vh;
             margin-bottom: 5vh;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 20vh);
         }
         h1 {
             text-align: center;
@@ -103,28 +106,27 @@
         }
         .button-group {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row;
+            justify-content: center;
             gap: 15px;
-            margin-top: 30px;
+            margin-top: auto;
+            padding-top: 20px;
             position: relative;
             width: 100%;
-            z-index: 20;
+            z-index: 100;
         }
         .btn {
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            padding: 10px 25px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.9);
             color: #2c3e50;
             border-radius: 20px;
             text-decoration: none;
             text-align: center;
-            min-width: 150px;
-            font-size: 0.95rem;
+            min-width: 120px;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.4);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -136,7 +138,7 @@
             position: relative;
         }
         .btn:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 1);
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
@@ -270,6 +272,7 @@
             .container {
                 max-width: 90%;
                 margin-top: 10vh;
+                margin-bottom: 15vh;
             }
             h1 {
                 font-size: 1.7rem;
@@ -287,10 +290,10 @@
                 width: 280px;
             }
             .btn {
-                min-width: 140px;
-                padding: 9px 20px;
-                height: 38px;
-                font-size: 0.9rem;
+                min-width: 100px;
+                padding: 8px 12px;
+                height: 36px;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -303,6 +306,8 @@
         </div>
         
         <div class="button-group">
+            <a href="/index.html" class="btn">返回主站</a>
+            <button id="toggleEmail" class="btn">添加友链</button>
             <div id="emailMenu" class="email-menu">
                 <div class="text-info">
                     <div class="info-row" data-copy="ekoneko@126.com">
@@ -333,8 +338,6 @@
                     </div>
                 </div>
             </div>
-            <a href="/index.html" class="btn">返回主站</a>
-            <button id="toggleEmail" class="btn">添加友链</button>
         </div>
     </div>
     
