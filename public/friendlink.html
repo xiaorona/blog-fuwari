@@ -59,6 +59,7 @@
             border: 1px solid rgba(255,255,255,0.3);
             width: 100%;
             height: 120px;
+            cursor: pointer;
         }
         .friend-link:hover {
             transform: translateY(-5px);
@@ -344,15 +345,12 @@
     <div id="toast" class="toast">已复制到剪贴板</div>
     
     <script>
-        // ==================== 安全配置 ====================
         const TRUSTED_DOMAINS = [
             'ikamusume7.org',
             'blog.imsugar.cn',
             'blog.sugar.moe'
-            // 添加更多可信域名...
         ];
 
-        // ==================== 友链加载 ====================
         async function loadFriendLinks() {
             try {
                 const response = await fetch('friendlinks.json');
@@ -378,10 +376,9 @@
                         </div>
                     `;
                     
-                    // 安全跳转处理
                     linkEl.addEventListener('click', (e) => {
                         e.preventDefault();
-                        handleSafeRedirect(link.url);
+                        handleSafeRedirect(link.url, e);
                     });
                     
                     container.appendChild(linkEl);
@@ -397,24 +394,27 @@
             }
         }
 
-        // ==================== 安全跳转 ====================
-        function handleSafeRedirect(url) {
+        function handleSafeRedirect(url, event) {
             try {
                 const domain = new URL(url).hostname;
                 const isTrusted = TRUSTED_DOMAINS.some(d => 
                     domain === d || domain.endsWith(`.${d}`)
                 );
                 
-                if (isTrusted) {
-                    // 可信域名：直接安全跳转
-                    safeRedirect(url);
-                } else {
-                    // 未知域名：记录日志后跳转（可根据需要改为阻止跳转）
+                const a = document.createElement('a');
+                a.href = url;
+                a.rel = 'noopener noreferrer';
+                a.target = '_blank';
+                
+                if (!isTrusted) {
                     console.warn('跳转未经验证域名:', domain);
-                    safeRedirect(url);
-                    
-                    // 可选：显示轻量提示
-                    showToast(`跳转到新域名: ${domain}`, 2000);
+                    event.currentTarget.classList.add('loading');
+                    setTimeout(() => {
+                        a.click();
+                        event.currentTarget.classList.remove('loading');
+                    }, 300);
+                } else {
+                    a.click();
                 }
             } catch (err) {
                 console.error('链接解析失败:', err);
@@ -422,13 +422,6 @@
             }
         }
 
-        function safeRedirect(url) {
-            // 最安全的跳转方式
-            const newWindow = window.open('', '_blank', 'noopener,noreferrer');
-            newWindow.location.href = url;
-        }
-
-        // ==================== 其他功能 ====================
         function showToast(message, duration = 2000) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -436,7 +429,6 @@
             setTimeout(() => toast.classList.remove('show'), duration);
         }
 
-        // 初始化邮箱菜单交互
         const toggleBtn = document.getElementById('toggleEmail');
         const emailMenu = document.getElementById('emailMenu');
         let isMenuVisible = false;
@@ -470,7 +462,6 @@
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).catch(() => {
-                // 兼容旧版浏览器
                 const textarea = document.createElement('textarea');
                 textarea.value = text;
                 document.body.appendChild(textarea);
@@ -480,7 +471,6 @@
             });
         }
 
-        // 页面加载
         document.addEventListener('DOMContentLoaded', () => {
             loadFriendLinks();
         });
