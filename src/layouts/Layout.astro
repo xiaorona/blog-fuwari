@@ -565,3 +565,35 @@ if (window.swup) {
 	document.addEventListener("swup:enable", setup)
 }
 </script>
+
+<style is:global>
+  /* 确保过渡期间布局稳定 */
+  html.swup-enabled {
+    overflow-x: hidden;
+  }
+  
+  /* 重置页面过渡后的样式 */
+  .transition-swup-main {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* 修复返回首页时的布局问题 */
+  body.is-popstate {
+    overflow: auto;
+  }
+</style>
+
+<script is:inline>
+  // 监听浏览器返回/前进事件
+  window.addEventListener('popstate', () => {
+    document.body.classList.add('is-popstate');
+    setTimeout(() => document.body.classList.remove('is-popstate'), 500);
+    
+    // 强制重新加载某些元素
+    if (window.swup) {
+      window.swup.loadPage(window.location.href, { method: 'replace' });
+    }
+  });
+</script>
