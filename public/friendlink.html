@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>友链</title>
+    <title>友情链接</title>
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
@@ -166,10 +166,6 @@
             visibility: visible;
             transform: translateX(-50%) translateY(0);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
         .email-item {
             display: flex;
             align-items: center;
@@ -302,16 +298,16 @@
     <div class="container">
         <h1>友情链接</h1>
         <div class="links-container" id="linksContainer">
-            <div class="loading">加载中...</div>
+            <div class="loading">加载友链中...</div>
         </div>
         
         <div class="button-group">
             <div id="emailMenu" class="email-menu">
-                <div class="email-item" data-copy="ekoneko@126.com">
-                    <span>Email：ekoneko@126.com</span>
-                    <span class="copy-icon"><i class="fas fa-clone"></i></span>
-                </div>
                 <div class="text-info">
+                    <div class="info-row" data-copy="ekoneko@126.com">
+                        <div class="content">联系邮箱：ekoneko@126.com</div>
+                        <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                    </div>
                     <div class="info-row">
                         <div class="label">发送以下内容至邮箱：</div>
                     </div>
@@ -331,6 +327,9 @@
                         <div class="content">desc：回首向来萧瑟处，也无风雨也无晴。</div>
                         <button class="copy-btn"><i class="fas fa-clone"></i></button>
                     </div>
+                    <div class="info-row">
+                        <div class="label">网站要求：在大陆地区能够正常访问，站点一分钟内加载完首页，内容符合中国大陆法律法规。</div>
+                    </div>
                 </div>
             </div>
             <a href="/index.html" class="btn">返回主站</a>
@@ -345,125 +344,145 @@
     <div id="toast" class="toast">已复制到剪贴板</div>
     
     <script>
-        // 加载友链数据并渲染
-        function loadFriendLinks() {
-            fetch('friendlinks.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('网络响应不正常');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const container = document.getElementById('linksContainer');
-                    if (data.length === 0) {
-                        container.innerHTML = '<p class="loading">暂无友链</p>';
-                        return;
-                    }
-                    
-                    container.innerHTML = '';
-                    data.forEach(link => {
-                        const linkElement = document.createElement('a');
-                        linkElement.href = link.url;
-                        linkElement.className = 'friend-link';
-                        linkElement.target = '_blank';
-                        linkElement.innerHTML = `
-                            <img src="${link.avatar}" alt="${link.name}" class="avatar" onerror="this.src='https://via.placeholder.com/80'">
-                            <div class="info">
-                                <div class="name">${link.name}</div>
-                                <div class="desc">${link.desc}</div>
-                            </div>
-                        `;
-                        container.appendChild(linkElement);
-                    });
-                })
-                .catch(error => {
-                    console.error('加载友链数据失败:', error);
-                    document.getElementById('linksContainer').innerHTML = `
-                        <div class="loading">
-                            <p>友链加载失败</p>
-                            <p>${error.message}</p>
-                            <button onclick="loadFriendLinks()" class="btn" style="margin-top: 10px;">重试</button>
-                        </div>
-                    `;
-                });
-        }
+        // ==================== 安全配置 ====================
+        const TRUSTED_DOMAINS = [
+            'ikamusume7.org',
+            'blog.imsugar.cn',
+            'blog.sugar.moe'
+            // 添加更多可信域名...
+        ];
 
-        // 页面加载完成后获取友链数据
-        document.addEventListener('DOMContentLoaded', function() {
-            loadFriendLinks();
-            
-            // 原有的交互逻辑
-            const toggleBtn = document.getElementById('toggleEmail');
-            const emailMenu = document.getElementById('emailMenu');
-            const toast = document.getElementById('toast');
-            let isMenuVisible = false;
-            
-            toggleBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                toggleEmailMenu();
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (!emailMenu.contains(e.target) && e.target !== toggleBtn && isMenuVisible) {
-                    toggleEmailMenu();
-                }
-            });
-            
-            emailMenu.addEventListener('click', function(e) {
-                e.stopPropagation();
-                if (e.target.classList.contains('copy-btn') || e.target.closest('.copy-btn')) {
-                    const btn = e.target.classList.contains('copy-btn') ? e.target : e.target.closest('.copy-btn');
-                    const text = btn.closest('[data-copy]')?.getAttribute('data-copy');
-                    if (text) {
-                        copyToClipboard(text);
-                        showToast();
-                    }
+        // ==================== 友链加载 ====================
+        async function loadFriendLinks() {
+            try {
+                const response = await fetch('friendlinks.json');
+                if (!response.ok) throw new Error('网络响应不正常');
+                
+                const links = await response.json();
+                const container = document.getElementById('linksContainer');
+                
+                if (links.length === 0) {
+                    container.innerHTML = '<p class="loading">暂无友链</p>';
                     return;
                 }
                 
-                const copyElement = e.target.closest('[data-copy]');
-                if (copyElement) {
-                    const text = copyElement.getAttribute('data-copy');
-                    if (text) {
-                        copyToClipboard(text);
-                        showToast();
-                    }
-                }
-            });
-            
-            function toggleEmailMenu() {
-                isMenuVisible = !isMenuVisible;
-                emailMenu.style.willChange = 'opacity, transform';
-                if (isMenuVisible) {
-                    emailMenu.style.display = 'flex';
-                    void emailMenu.offsetHeight;
-                    emailMenu.classList.add('show');
-                } else {
-                    emailMenu.classList.remove('show');
-                    setTimeout(() => {
-                        emailMenu.style.display = 'none';
-                        emailMenu.style.willChange = 'auto';
-                    }, 300);
-                }
-                toggleBtn.textContent = isMenuVisible ? '收起菜单' : '添加友链';
+                container.innerHTML = '';
+                links.forEach(link => {
+                    const linkEl = document.createElement('a');
+                    linkEl.className = 'friend-link';
+                    linkEl.innerHTML = `
+                        <img src="${link.avatar}" alt="${link.name}" class="avatar" onerror="this.src='https://via.placeholder.com/80'">
+                        <div class="info">
+                            <div class="name">${link.name}</div>
+                            <div class="desc">${link.desc}</div>
+                        </div>
+                    `;
+                    
+                    // 安全跳转处理
+                    linkEl.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        handleSafeRedirect(link.url);
+                    });
+                    
+                    container.appendChild(linkEl);
+                });
+            } catch (error) {
+                console.error('加载友链失败:', error);
+                document.getElementById('linksContainer').innerHTML = `
+                    <div class="loading">
+                        <p>友链加载失败</p>
+                        <button onclick="loadFriendLinks()" class="btn" style="margin-top:10px;">重试</button>
+                    </div>
+                `;
             }
-            
-            function copyToClipboard(text) {
+        }
+
+        // ==================== 安全跳转 ====================
+        function handleSafeRedirect(url) {
+            try {
+                const domain = new URL(url).hostname;
+                const isTrusted = TRUSTED_DOMAINS.some(d => 
+                    domain === d || domain.endsWith(`.${d}`)
+                );
+                
+                if (isTrusted) {
+                    // 可信域名：直接安全跳转
+                    safeRedirect(url);
+                } else {
+                    // 未知域名：记录日志后跳转（可根据需要改为阻止跳转）
+                    console.warn('跳转未经验证域名:', domain);
+                    safeRedirect(url);
+                    
+                    // 可选：显示轻量提示
+                    showToast(`跳转到新域名: ${domain}`, 2000);
+                }
+            } catch (err) {
+                console.error('链接解析失败:', err);
+                showToast('无效的链接地址', 3000);
+            }
+        }
+
+        function safeRedirect(url) {
+            // 最安全的跳转方式
+            const newWindow = window.open('', '_blank', 'noopener,noreferrer');
+            newWindow.location.href = url;
+        }
+
+        // ==================== 其他功能 ====================
+        function showToast(message, duration = 2000) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), duration);
+        }
+
+        // 初始化邮箱菜单交互
+        const toggleBtn = document.getElementById('toggleEmail');
+        const emailMenu = document.getElementById('emailMenu');
+        let isMenuVisible = false;
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleEmailMenu();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!emailMenu.contains(e.target) && e.target !== toggleBtn && isMenuVisible) {
+                toggleEmailMenu();
+            }
+        });
+
+        emailMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const copyElement = e.target.closest('[data-copy]');
+            if (copyElement) {
+                const text = copyElement.getAttribute('data-copy');
+                copyToClipboard(text);
+                showToast('已复制到剪贴板');
+            }
+        });
+
+        function toggleEmailMenu() {
+            isMenuVisible = !isMenuVisible;
+            emailMenu.classList.toggle('show', isMenuVisible);
+            toggleBtn.textContent = isMenuVisible ? '收起菜单' : '添加友链';
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).catch(() => {
+                // 兼容旧版浏览器
                 const textarea = document.createElement('textarea');
                 textarea.value = text;
                 document.body.appendChild(textarea);
                 textarea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
-            }
-            
-            function showToast() {
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2000);
-            }
+            });
+        }
+
+        // 页面加载
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFriendLinks();
         });
     </script>
 </body>
