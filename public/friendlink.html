@@ -59,7 +59,6 @@
             border: 1px solid rgba(255,255,255,0.3);
             width: 100%;
             height: 120px;
-            cursor: pointer;
         }
         .friend-link:hover {
             transform: translateY(-5px);
@@ -101,15 +100,12 @@
             overflow: hidden;
             line-height: 1.4;
         }
-        .button-group {
+        .buttons-top {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
             gap: 15px;
-            margin-top: 30px;
-            position: relative;
+            margin-bottom: 20px;
             width: 100%;
-            z-index: 20;
         }
         .btn {
             display: inline-flex;
@@ -167,29 +163,6 @@
             visibility: visible;
             transform: translateX(-50%) translateY(0);
         }
-        .email-item {
-            display: flex;
-            align-items: center;
-            padding: 10px 12px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .email-item:hover {
-            background: rgba(255,255,255,0.9);
-            transform: translateX(3px);
-        }
-        .email-item span {
-            flex: 1;
-            font-size: 0.9rem;
-            color: #2c3e50;
-        }
-        .email-item .copy-icon {
-            color: #6c757d;
-            font-size: 0.9rem;
-            margin-left: 8px;
-        }
         .text-info {
             display: flex;
             flex-direction: column;
@@ -197,19 +170,6 @@
             padding: 10px 12px;
             background: rgba(255,255,255,0.7);
             border-radius: 8px;
-        }
-        .copy-btn {
-            background: transparent;
-            border: none;
-            color: #6c757d;
-            cursor: pointer;
-            margin-left: 8px;
-            transition: all 0.2s ease;
-            font-size: 0.9rem;
-            padding: 0;
-        }
-        .copy-btn:hover {
-            color: #2c3e50;
         }
         .info-row {
             display: flex;
@@ -228,6 +188,19 @@
             font-size: 0.9rem;
             color: #2c3e50;
             word-break: break-all;
+        }
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            padding: 0;
+        }
+        .copy-btn:hover {
+            color: #2c3e50;
         }
         .toast {
             position: fixed;
@@ -298,40 +271,45 @@
 <body>
     <div class="container">
         <h1>友情链接</h1>
-        <div class="links-container" id="linksContainer">
-            <div class="loading">加载友链中...</div>
-        </div>
         
-        <div class="button-group">
-            <div id="emailMenu" class="email-menu">
-                <div class="email-item" data-copy="ekoneko@126.com">
-                    <span>联系邮箱：ekoneko@126.com</span>
-                    <span class="copy-icon"><i class="fas fa-clone"></i></span>
-                </div>
-                <div class="text-info">
-                    <div class="info-row">
-                        <div class="label">发送以下内容至邮箱：</div>
-                    </div>
-                    <div class="info-row" data-copy="Sugar's blog">
-                        <div class="content">网站名称：Sugar's blog</div>
-                        <button class="copy-btn"><i class="fas fa-clone"></i></button>
-                    </div>
-                    <div class="info-row" data-copy="https://blog.sugar.moe/images/avatar.webp">
-                        <div class="content">网站头像：https://blog.sugar.moe/images/avatar.webp</div>
-                        <button class="copy-btn"><i class="fas fa-clone"></i></button>
-                    </div>
-                    <div class="info-row" data-copy="https://blog.sugar.moe">
-                        <div class="content">网站首页：https://blog.sugar.moe</div>
-                        <button class="copy-btn"><i class="fas fa-clone"></i></button>
-                    </div>
-                    <div class="info-row" data-copy="回首向来萧瑟处，也无风雨也无晴。">
-                        <div class="content">网站介绍：回首向来萧瑟处，也无风雨也无晴。</div>
-                        <button class="copy-btn"><i class="fas fa-clone"></i></button>
-                    </div>
-                </div>
-            </div>
+        <div class="buttons-top">
             <a href="/index.html" class="btn">返回主站</a>
             <button id="toggleEmail" class="btn">添加友链</button>
+        </div>
+        
+        <div id="emailMenu" class="email-menu">
+            <div class="text-info">
+                <div class="info-row" data-copy="ekoneko@126.com">
+                    <div class="content">联系邮箱：ekoneko@126.com</div>
+                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                </div>
+                <div class="info-row">
+                    <div class="label">发送以下内容至邮箱：</div>
+                </div>
+                <div class="info-row" data-copy="Sugar's blog">
+                    <div class="content">name：Sugar's blog</div>
+                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                </div>
+                <div class="info-row" data-copy="https://blog.sugar.moe/images/avatar.webp">
+                    <div class="content">avatar：https://blog.sugar.moe/images/avatar.webp</div>
+                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                </div>
+                <div class="info-row" data-copy="https://blog.sugar.moe">
+                    <div class="content">url：https://blog.sugar.moe</div>
+                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                </div>
+                <div class="info-row" data-copy="回首向来萧瑟处，也无风雨也无晴。">
+                    <div class="content">desc：回首向来萧瑟处，也无风雨也无晴。</div>
+                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                </div>
+                <div class="info-row">
+                    <div class="label">网站要求：</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="links-container" id="linksContainer">
+            <div class="loading">加载友链中...</div>
         </div>
     </div>
     
@@ -342,12 +320,14 @@
     <div id="toast" class="toast">已复制到剪贴板</div>
     
     <script>
+        // ==================== 安全配置 ====================
         const TRUSTED_DOMAINS = [
             'ikamusume7.org',
-            'example.com',
+            'blog.imsugar.cn',
             'blog.sugar.moe'
         ];
 
+        // ==================== 友链加载 ====================
         async function loadFriendLinks() {
             try {
                 const response = await fetch('friendlinks.json');
@@ -375,7 +355,7 @@
                     
                     linkEl.addEventListener('click', (e) => {
                         e.preventDefault();
-                        handleSafeRedirect(link.url, e);
+                        handleSafeRedirect(link.url);
                     });
                     
                     container.appendChild(linkEl);
@@ -391,27 +371,20 @@
             }
         }
 
-        function handleSafeRedirect(url, event) {
+        // ==================== 安全跳转 ====================
+        function handleSafeRedirect(url) {
             try {
                 const domain = new URL(url).hostname;
                 const isTrusted = TRUSTED_DOMAINS.some(d => 
                     domain === d || domain.endsWith(`.${d}`)
                 );
                 
-                const a = document.createElement('a');
-                a.href = url;
-                a.rel = 'noopener noreferrer';
-                a.target = '_blank';
-                
-                if (!isTrusted) {
-                    console.warn('跳转未经验证域名:', domain);
-                    event.currentTarget.classList.add('loading');
-                    setTimeout(() => {
-                        a.click();
-                        event.currentTarget.classList.remove('loading');
-                    }, 300);
+                if (isTrusted) {
+                    safeRedirect(url);
                 } else {
-                    a.click();
+                    console.warn('跳转未经验证域名:', domain);
+                    safeRedirect(url);
+                    showToast(`跳转到新域名: ${domain}`, 2000);
                 }
             } catch (err) {
                 console.error('链接解析失败:', err);
@@ -419,6 +392,12 @@
             }
         }
 
+        function safeRedirect(url) {
+            const newWindow = window.open('', '_blank', 'noopener,noreferrer');
+            newWindow.location.href = url;
+        }
+
+        // ==================== 其他功能 ====================
         function showToast(message, duration = 2000) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -426,6 +405,7 @@
             setTimeout(() => toast.classList.remove('show'), duration);
         }
 
+        // 初始化邮箱菜单交互
         const toggleBtn = document.getElementById('toggleEmail');
         const emailMenu = document.getElementById('emailMenu');
         let isMenuVisible = false;
@@ -468,6 +448,7 @@
             });
         }
 
+        // 页面加载
         document.addEventListener('DOMContentLoaded', () => {
             loadFriendLinks();
         });
