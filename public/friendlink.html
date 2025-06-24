@@ -130,13 +130,17 @@
             height: 40px;
             box-sizing: border-box;
             position: relative;
-            flex: 1;
-            max-width: calc(50% - 8px);
+            width: 48%; /* 使两个按钮宽度一致 */
+            min-width: 120px; /* 最小宽度 */
         }
         .btn:hover {
             background: rgba(255, 255, 255, 0.8);
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .email-menu-container {
+            position: relative;
+            width: 48%; /* 与按钮同宽 */
         }
         .email-menu {
             position: absolute;
@@ -248,6 +252,13 @@
             .email-menu.show {
                 transform: translateX(-50%) translateY(0);
             }
+            .btn {
+                width: auto;
+                min-width: 150px;
+            }
+            .email-menu-container {
+                width: auto;
+            }
         }
         @media (max-width: 600px) {
             .container {
@@ -273,9 +284,13 @@
                 padding: 8px 15px;
                 height: 38px;
                 font-size: 0.9rem;
+                width: 48%;
             }
             .buttons-top {
                 margin-bottom: 15px;
+            }
+            .email-menu-container {
+                width: 48%;
             }
         }
     </style>
@@ -286,7 +301,7 @@
         
         <div class="buttons-top">
             <a href="/index.html" class="btn">返回主站</a>
-            <div style="position: relative; flex: 1; max-width: calc(50% - 8px);">
+            <div class="email-menu-container">
                 <button id="toggleEmail" class="btn">添加友链</button>
                 <div id="emailMenu" class="email-menu">
                     <div class="text-info">
@@ -358,9 +373,9 @@
                 links.forEach(link => {
                     const linkEl = document.createElement('a');
                     linkEl.className = 'friend-link';
-                    linkEl.href = link.url; // 添加href属性
-                    linkEl.target = "_blank"; // 添加target属性
-                    linkEl.rel = "noopener noreferrer"; // 添加安全属性
+                    linkEl.href = link.url;
+                    linkEl.target = "_blank";
+                    linkEl.rel = "noopener noreferrer";
                     linkEl.innerHTML = `
                         <img src="${link.avatar}" alt="${link.name}" class="avatar" onerror="this.src='https://via.placeholder.com/80'">
                         <div class="info">
@@ -368,12 +383,9 @@
                             <div class="desc">${link.desc}</div>
                         </div>
                     `;
-                    
-                    // 移除原来的点击事件处理，直接使用a标签的默认行为
                     container.appendChild(linkEl);
                 });
 
-                // 移动端加载完成后显示标题
                 if (window.innerWidth <= 600) {
                     document.getElementById('pageTitle').style.display = 'block';
                 }
@@ -464,12 +476,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadFriendLinks();
             
-            // 移动端初始隐藏标题
             if (window.innerWidth <= 600) {
                 document.getElementById('pageTitle').style.display = 'none';
             }
             
-            // 窗口大小变化时检查是否需要显示标题
             window.addEventListener('resize', () => {
                 const title = document.getElementById('pageTitle');
                 if (window.innerWidth <= 600) {
