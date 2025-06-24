@@ -26,13 +26,13 @@
         .container {
             width: 100%;
             max-width: 700px;
-            margin-top: 15vh;
+            margin-top: 10vh;
             margin-bottom: 5vh;
             position: relative;
         }
         h1 {
             text-align: center;
-            margin: 0 auto 30px;
+            margin: 0 auto 20px;
             color: #000000;
             font-size: 2rem;
             font-weight: 600;
@@ -43,6 +43,7 @@
             grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 15px;
             margin-bottom: 30px;
+            width: 100%;
         }
         .friend-link {
             background: rgba(255, 255, 255, 0.7);
@@ -102,7 +103,7 @@
         }
         .buttons-top {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             gap: 15px;
             margin-bottom: 20px;
             width: 100%;
@@ -111,7 +112,7 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            padding: 10px 25px;
+            padding: 10px 20px;
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -119,7 +120,6 @@
             border-radius: 20px;
             text-decoration: none;
             text-align: center;
-            min-width: 150px;
             font-size: 0.95rem;
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.4);
@@ -130,6 +130,8 @@
             height: 40px;
             box-sizing: border-box;
             position: relative;
+            flex: 1;
+            max-width: calc(50% - 8px);
         }
         .btn:hover {
             background: rgba(255, 255, 255, 0.8);
@@ -138,30 +140,30 @@
         }
         .email-menu {
             position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 100%;
+            left: 0;
+            right: 0;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 12px;
             padding: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            width: 500px;
             opacity: 0;
             visibility: hidden;
-            transform: translateX(-50%) translateY(10px);
+            transform: translateY(10px);
             flex-direction: column;
             gap: 10px;
             z-index: 30;
-            margin-bottom: 10px;
+            margin-top: 10px;
             font-family: "LXGW WenKai Screen", sans-serif;
             transition: all 0.3s ease;
+            width: 100%;
         }
         .email-menu.show {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateY(0);
         }
         .text-info {
             display: flex;
@@ -238,17 +240,28 @@
             .links-container {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+            .email-menu {
+                width: 500px;
+                left: 50%;
+                transform: translateX(-50%) translateY(10px);
+            }
+            .email-menu.show {
+                transform: translateX(-50%) translateY(0);
+            }
         }
         @media (max-width: 600px) {
             .container {
-                max-width: 90%;
-                margin-top: 10vh;
+                max-width: 100%;
+                margin-top: 5vh;
+                padding: 15px;
             }
             h1 {
                 font-size: 1.7rem;
+                margin-bottom: 15px;
+                display: none;
             }
             .friend-link {
-                height: 110px;
+                height: 100px;
                 padding: 12px;
             }
             .avatar {
@@ -256,54 +269,54 @@
                 height: 70px;
                 margin-right: 12px;
             }
-            .email-menu {
-                width: 280px;
-            }
             .btn {
-                min-width: 140px;
-                padding: 9px 20px;
+                padding: 8px 15px;
                 height: 38px;
                 font-size: 0.9rem;
+            }
+            .buttons-top {
+                margin-bottom: 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>友情链接</h1>
+        <h1 id="pageTitle">友情链接</h1>
         
         <div class="buttons-top">
             <a href="/index.html" class="btn">返回主站</a>
-            <button id="toggleEmail" class="btn">添加友链</button>
-        </div>
-        
-        <div id="emailMenu" class="email-menu">
-            <div class="text-info">
-                <div class="info-row" data-copy="ekoneko@126.com">
-                    <div class="content">联系邮箱：ekoneko@126.com</div>
-                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
-                </div>
-                <div class="info-row">
-                    <div class="label">发送以下内容至邮箱：</div>
-                </div>
-                <div class="info-row" data-copy="Sugar's blog">
-                    <div class="content">name：Sugar's blog</div>
-                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
-                </div>
-                <div class="info-row" data-copy="https://blog.sugar.moe/images/avatar.webp">
-                    <div class="content">avatar：https://blog.sugar.moe/images/avatar.webp</div>
-                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
-                </div>
-                <div class="info-row" data-copy="https://blog.sugar.moe">
-                    <div class="content">url：https://blog.sugar.moe</div>
-                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
-                </div>
-                <div class="info-row" data-copy="回首向来萧瑟处，也无风雨也无晴。">
-                    <div class="content">desc：回首向来萧瑟处，也无风雨也无晴。</div>
-                    <button class="copy-btn"><i class="fas fa-clone"></i></button>
-                </div>
-                <div class="info-row">
-                    <div class="label">网站要求：</div>
+            <div style="position: relative; flex: 1; max-width: calc(50% - 8px);">
+                <button id="toggleEmail" class="btn">添加友链</button>
+                <div id="emailMenu" class="email-menu">
+                    <div class="text-info">
+                        <div class="info-row" data-copy="ekoneko@126.com">
+                            <div class="content">联系邮箱：ekoneko@126.com</div>
+                            <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                        </div>
+                        <div class="info-row">
+                            <div class="label">发送以下内容至邮箱：</div>
+                        </div>
+                        <div class="info-row" data-copy="Sugar's blog">
+                            <div class="content">name：Sugar's blog</div>
+                            <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                        </div>
+                        <div class="info-row" data-copy="https://blog.sugar.moe/images/avatar.webp">
+                            <div class="content">avatar：https://blog.sugar.moe/images/avatar.webp</div>
+                            <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                        </div>
+                        <div class="info-row" data-copy="https://blog.sugar.moe">
+                            <div class="content">url：https://blog.sugar.moe</div>
+                            <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                        </div>
+                        <div class="info-row" data-copy="回首向来萧瑟处，也无风雨也无晴。">
+                            <div class="content">desc：回首向来萧瑟处，也无风雨也无晴。</div>
+                            <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                        </div>
+                        <div class="info-row">
+                            <div class="label">网站要求：</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -345,6 +358,9 @@
                 links.forEach(link => {
                     const linkEl = document.createElement('a');
                     linkEl.className = 'friend-link';
+                    linkEl.href = link.url; // 添加href属性
+                    linkEl.target = "_blank"; // 添加target属性
+                    linkEl.rel = "noopener noreferrer"; // 添加安全属性
                     linkEl.innerHTML = `
                         <img src="${link.avatar}" alt="${link.name}" class="avatar" onerror="this.src='https://via.placeholder.com/80'">
                         <div class="info">
@@ -353,13 +369,14 @@
                         </div>
                     `;
                     
-                    linkEl.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        handleSafeRedirect(link.url);
-                    });
-                    
+                    // 移除原来的点击事件处理，直接使用a标签的默认行为
                     container.appendChild(linkEl);
                 });
+
+                // 移动端加载完成后显示标题
+                if (window.innerWidth <= 600) {
+                    document.getElementById('pageTitle').style.display = 'block';
+                }
             } catch (error) {
                 console.error('加载友链失败:', error);
                 document.getElementById('linksContainer').innerHTML = `
@@ -380,21 +397,16 @@
                 );
                 
                 if (isTrusted) {
-                    safeRedirect(url);
+                    window.open(url, '_blank', 'noopener,noreferrer');
                 } else {
                     console.warn('跳转未经验证域名:', domain);
-                    safeRedirect(url);
+                    window.open(url, '_blank', 'noopener,noreferrer');
                     showToast(`跳转到新域名: ${domain}`, 2000);
                 }
             } catch (err) {
                 console.error('链接解析失败:', err);
                 showToast('无效的链接地址', 3000);
             }
-        }
-
-        function safeRedirect(url) {
-            const newWindow = window.open('', '_blank', 'noopener,noreferrer');
-            newWindow.location.href = url;
         }
 
         // ==================== 其他功能 ====================
@@ -451,6 +463,21 @@
         // 页面加载
         document.addEventListener('DOMContentLoaded', () => {
             loadFriendLinks();
+            
+            // 移动端初始隐藏标题
+            if (window.innerWidth <= 600) {
+                document.getElementById('pageTitle').style.display = 'none';
+            }
+            
+            // 窗口大小变化时检查是否需要显示标题
+            window.addEventListener('resize', () => {
+                const title = document.getElementById('pageTitle');
+                if (window.innerWidth <= 600) {
+                    title.style.display = 'none';
+                } else {
+                    title.style.display = 'block';
+                }
+            });
         });
     </script>
 </body>
