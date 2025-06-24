@@ -16,188 +16,219 @@
             min-height: 100%;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
             background: url('https://rpic.origz.com/api.php?category=pixiv') no-repeat center center fixed;
             background-size: cover;
-            padding: 0;
+            padding: 20px;
             position: relative;
         }
-        
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.9);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .nav-btn {
-            background: transparent;
-            border: none;
-            color: #2c3e50;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            font-family: "LXGW WenKai Screen", sans-serif;
-            text-decoration: none;
-        }
-        
-        .nav-btn:hover {
-            background: rgba(0,0,0,0.05);
-        }
-        
         .container {
             width: 100%;
             max-width: 700px;
-            margin: 80px auto 40px;
+            margin-top: 15vh;
+            margin-bottom: 5vh;
             position: relative;
-            padding: 0 20px;
         }
-        
+        h1 {
+            text-align: center;
+            margin: 0 auto 30px;
+            color: #000000;
+            font-size: 2rem;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+        }
         .links-container {
             display: grid;
             grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
-        
         .friend-link {
-            background: transparent;
-            border-radius: 8px;
-            padding: 10px;
-            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             text-decoration: none;
             color: inherit;
+            border: 1px solid rgba(255,255,255,0.3);
             width: 100%;
+            height: 120px;
             cursor: pointer;
         }
-        
         .friend-link:hover {
-            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.85);
         }
-        
         .avatar {
-            width: 60px;
-            height: 60px;
-            min-width: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
             margin-right: 15px;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 3px solid rgba(255,255,255,0.5);
+            flex-shrink: 0;
         }
-        
         .info {
             flex: 1;
             min-width: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            overflow: hidden;
         }
-        
         .name {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 5px;
-            color: #fff;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+            color: #2c3e50;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            width: 100%;
         }
-        
         .desc {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.8rem;
+            color: #6c757d;
+            font-size: 0.85rem;
+            opacity: 0.9;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             line-height: 1.4;
-            word-break: break-word;
-            width: 100%;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
-        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            position: relative;
+            width: 100%;
+            z-index: 20;
+        }
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #2c3e50;
+            border-radius: 20px;
+            text-decoration: none;
+            text-align: center;
+            min-width: 150px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: 500;
+            cursor: pointer;
+            font-family: "LXGW WenKai Screen", sans-serif;
+            height: 40px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
         .email-menu {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 8px;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
             padding: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             width: 500px;
-            max-width: calc(100% - 40px);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px);
+            transform: translateX(-50%) translateY(10px);
             flex-direction: column;
             gap: 10px;
             z-index: 30;
+            margin-bottom: 10px;
             font-family: "LXGW WenKai Screen", sans-serif;
             transition: all 0.3s ease;
         }
-        
         .email-menu.show {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translateX(-50%) translateY(0);
         }
-        
-        .error-container {
-            text-align: center;
-            padding: 20px;
-            background: rgba(255,255,255,0.9);
+        .email-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.7);
             border-radius: 8px;
-        }
-        
-        .error-message {
-            color: #e74c3c;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-        
-        .retry-btn {
-            background: rgba(255,255,255,0.9);
-            border: 1px solid rgba(0,0,0,0.1);
-            color: #2c3e50;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
-        .footer {
-            position: fixed;
-            bottom: 10px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.7);
-            padding: 5px;
-            z-index: 1;
+        .email-item:hover {
+            background: rgba(255,255,255,0.9);
+            transform: translateX(3px);
         }
-        
-        .footer a {
-            text-decoration: none;
-            color: rgba(255,255,255,0.7);
+        .email-item span {
+            flex: 1;
+            font-size: 0.9rem;
+            color: #2c3e50;
         }
-        
+        .email-item .copy-icon {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+        .text-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+        }
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            padding: 0;
+        }
+        .copy-btn:hover {
+            color: #2c3e50;
+        }
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+        .label {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        .content {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            word-break: break-all;
+        }
         .toast {
             position: fixed;
             bottom: 30px;
@@ -213,86 +244,99 @@
             z-index: 100;
             font-family: "LXGW WenKai Screen", sans-serif;
         }
-        
         .toast.show {
             opacity: 1;
         }
-        
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #000;
+            padding: 5px;
+        }
         .loading {
             text-align: center;
             padding: 20px;
-            color: rgba(255,255,255,0.8);
+            color: #666;
         }
-        
         @media (min-width: 768px) {
             .links-container {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
-        
         @media (max-width: 600px) {
             .container {
-                margin-top: 70px;
+                max-width: 90%;
+                margin-top: 10vh;
             }
-            
+            h1 {
+                font-size: 1.7rem;
+            }
+            .friend-link {
+                height: 110px;
+                padding: 12px;
+            }
             .avatar {
-                width: 50px;
-                height: 50px;
-                min-width: 50px;
+                width: 70px;
+                height: 70px;
                 margin-right: 12px;
             }
-            
             .email-menu {
                 width: 280px;
+            }
+            .btn {
+                min-width: 140px;
+                padding: 9px 20px;
+                height: 38px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="top-bar">
-        <a href="/index.html" class="nav-btn" style="text-decoration: none;">返回主站</a>
-        <button id="toggleEmail" class="nav-btn">添加友链</button>
-    </div>
-    
     <div class="container">
+        <h1>友情链接</h1>
         <div class="links-container" id="linksContainer">
             <div class="loading">加载友链中...</div>
         </div>
-    </div>
-    
-    <div id="emailMenu" class="email-menu">
-        <div class="text-info">
-            <div class="info-row" data-copy="ekoneko@126.com">
-                <div class="content">联系邮箱：ekoneko@126.com</div>
-                <button class="copy-btn"><i class="fas fa-clone"></i></button>
+        
+        <div class="button-group">
+            <div id="emailMenu" class="email-menu">
+                <div class="email-item" data-copy="ekoneko@126.com">
+                    <span>联系邮箱：ekoneko@126.com</span>
+                    <span class="copy-icon"><i class="fas fa-clone"></i></span>
+                </div>
+                <div class="text-info">
+                    <div class="info-row">
+                        <div class="label">发送以下内容至邮箱：</div>
+                    </div>
+                    <div class="info-row" data-copy="Sugar's blog">
+                        <div class="content">网站名称：Sugar's blog</div>
+                        <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                    </div>
+                    <div class="info-row" data-copy="https://blog.sugar.moe/images/avatar.webp">
+                        <div class="content">网站头像：https://blog.sugar.moe/images/avatar.webp</div>
+                        <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                    </div>
+                    <div class="info-row" data-copy="https://blog.sugar.moe">
+                        <div class="content">网站首页：https://blog.sugar.moe</div>
+                        <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                    </div>
+                    <div class="info-row" data-copy="回首向来萧瑟处，也无风雨也无晴。">
+                        <div class="content">网站介绍：回首向来萧瑟处，也无风雨也无晴。</div>
+                        <button class="copy-btn"><i class="fas fa-clone"></i></button>
+                    </div>
+                </div>
             </div>
-            <div class="info-row">
-                <div class="label">发送以下内容至邮箱：</div>
-            </div>
-            <div class="info-row" data-copy="Sugar's blog">
-                <div class="content">name：Sugar's blog</div>
-                <button class="copy-btn"><i class="fas fa-clone"></i></button>
-            </div>
-            <div class="info-row" data-copy="https://blog.sugar.moe/images/avatar.webp">
-                <div class="content">avatar：https://blog.sugar.moe/images/avatar.webp</div>
-                <button class="copy-btn"><i class="fas fa-clone"></i></button>
-            </div>
-            <div class="info-row" data-copy="https://blog.sugar.moe">
-                <div class="content">url：https://blog.sugar.moe</div>
-                <button class="copy-btn"><i class="fas fa-clone"></i></button>
-            </div>
-            <div class="info-row" data-copy="回首向来萧瑟处，也无风雨也无晴。">
-                <div class="content">desc：回首向来萧瑟处，也无风雨也无晴。</div>
-                <button class="copy-btn"><i class="fas fa-clone"></i></button>
-            </div>
-            <div class="info-row">
-                <div class="label">网站要求：</div>
-            </div>
+            <a href="/index.html" class="btn">返回主站</a>
+            <button id="toggleEmail" class="btn">添加友链</button>
         </div>
     </div>
     
     <div class="footer">
-        <a href="https://rpic.origz.com/api.php?category=pixiv" target="_blank">背景图:源初云API</a>
+        <a href="https://rpic.origz.com/api.php?category=pixiv" target="_blank" style="text-decoration: none; color: #000;">背景图:源初云API</a>
     </div>
     
     <div id="toast" class="toast">已复制到剪贴板</div>
@@ -300,9 +344,8 @@
     <script>
         const TRUSTED_DOMAINS = [
             'ikamusume7.org',
-            'blog.imsugar.cn',
-            'blog.sugar.moe',
-            'blog.calyee.top'
+            'example.com',
+            'blog.sugar.moe'
         ];
 
         async function loadFriendLinks() {
@@ -340,9 +383,9 @@
             } catch (error) {
                 console.error('加载友链失败:', error);
                 document.getElementById('linksContainer').innerHTML = `
-                    <div class="error-container">
-                        <p class="error-message">友链加载失败，请稍后再试</p>
-                        <button onclick="loadFriendLinks()" class="retry-btn">重新加载</button>
+                    <div class="loading">
+                        <p>友链加载失败</p>
+                        <button onclick="loadFriendLinks()" class="btn" style="margin-top:10px;">重试</button>
                     </div>
                 `;
             }
