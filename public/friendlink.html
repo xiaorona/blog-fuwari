@@ -29,14 +29,9 @@
         margin-top: 10vh;
         margin-bottom: 5vh;
         position: relative;
-    }
-    h1 {
-        text-align: center;
-        margin: 0 auto 20px;
-        color: #000000;
-        font-size: 2rem;
-        font-weight: 600;
-        text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .links-container {
         display: grid;
@@ -44,6 +39,7 @@
         gap: 15px;
         margin-bottom: 30px;
         width: 100%;
+        justify-items: center;
     }
     .friend-link {
         background: rgba(255, 255, 255, 0.7);
@@ -59,6 +55,7 @@
         color: inherit;
         border: 1px solid rgba(255,255,255,0.3);
         width: 100%;
+        max-width: 500px;
         height: 120px;
     }
     .friend-link:hover {
@@ -103,16 +100,17 @@
     }
     .buttons-top {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         gap: 15px;
         margin-bottom: 20px;
         width: 100%;
+        max-width: 500px;
     }
     .btn {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        padding: 10px 20px;
+        padding: 8px 16px;
         background: rgba(255, 255, 255, 0.6);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
@@ -120,18 +118,17 @@
         border-radius: 20px;
         text-decoration: none;
         text-align: center;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         transition: all 0.3s ease;
         border: 1px solid rgba(255,255,255,0.4);
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         font-weight: 500;
         cursor: pointer;
         font-family: "LXGW WenKai Screen", sans-serif;
-        height: 40px;
+        height: 36px;
         box-sizing: border-box;
         position: relative;
-        width: 48%;
-        min-width: 120px;
+        white-space: nowrap;
     }
     .btn:hover {
         background: rgba(255, 255, 255, 0.8);
@@ -140,11 +137,10 @@
     }
     .email-menu-container {
         position: relative;
-        width: 48%;
     }
     .email-menu {
         position: fixed;
-        top: calc(10vh + 100px); /* 根据实际布局调整 */
+        top: calc(10vh + 100px);
         left: 50%;
         transform: translateX(-50%) translateY(10px);
         background: rgba(255, 255, 255, 0.85);
@@ -250,19 +246,12 @@
         .email-menu {
             position: absolute;
             top: 100%;
-            left: 0;
-            transform: translateY(10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
             width: 500px;
         }
         .email-menu.show {
-            transform: translateY(0);
-        }
-        .btn {
-            width: auto;
-            min-width: 150px;
-        }
-        .email-menu-container {
-            width: auto;
+            transform: translateX(-50%) translateY(0);
         }
     }
     @media (max-width: 600px) {
@@ -270,11 +259,6 @@
             max-width: 100%;
             margin-top: 5vh;
             padding: 15px;
-        }
-        h1 {
-            font-size: 1.7rem;
-            margin-bottom: 15px;
-            display: none;
         }
         .friend-link {
             height: 100px;
@@ -285,20 +269,11 @@
             height: 70px;
             margin-right: 12px;
         }
-        .btn {
-            padding: 8px 15px;
-            height: 38px;
-            font-size: 0.9rem;
-            width: 48%;
-        }
         .buttons-top {
             margin-bottom: 15px;
         }
-        .email-menu-container {
-            width: 48%;
-        }
         .email-menu {
-            top: calc(5vh + 90px); /* 移动端调整位置 */
+            top: calc(5vh + 90px);
             width: calc(100vw - 30px);
         }
     }
@@ -306,8 +281,6 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="pageTitle">友情链接</h1>
-        
         <div class="buttons-top">
             <a href="/index.html" class="btn">返回主站</a>
             <div class="email-menu-container">
@@ -394,16 +367,12 @@
                     `;
                     container.appendChild(linkEl);
                 });
-
-                if (window.innerWidth <= 600) {
-                    document.getElementById('pageTitle').style.display = 'block';
-                }
             } catch (error) {
                 console.error('加载友链失败:', error);
                 document.getElementById('linksContainer').innerHTML = `
                     <div class="loading">
                         <p>友链加载失败</p>
-                        <button onclick="loadFriendLinks()" class="btn" style="margin-top:10px;">重试</button>
+                        <button onclick="loadFriendLinks()" class="btn">重试</button>
                     </div>
                 `;
             }
@@ -484,19 +453,6 @@
         // 页面加载
         document.addEventListener('DOMContentLoaded', () => {
             loadFriendLinks();
-            
-            if (window.innerWidth <= 600) {
-                document.getElementById('pageTitle').style.display = 'none';
-            }
-            
-            window.addEventListener('resize', () => {
-                const title = document.getElementById('pageTitle');
-                if (window.innerWidth <= 600) {
-                    title.style.display = 'none';
-                } else {
-                    title.style.display = 'block';
-                }
-            });
         });
     </script>
 </body>
